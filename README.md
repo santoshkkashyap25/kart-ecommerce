@@ -4,8 +4,6 @@
 [![Django](https://img.shields.io/badge/Django-5.x-092E20?style=flat-square&logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Database](https://img.shields.io/badge/Database-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![Tests](https://img.shields.io/badge/Tests-98%20Passed-brightgreen?style=flat-square)]()
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)]()
 
 A full-stack monolithic e-commerce application built with **Python** and **Django** using the Model-View-Template (MVT) pattern. It covers the complete retail journey: product catalog, search & filtering, real-time AJAX cart, wishlist, multi-address checkout, order lifecycle tracking, customer reviews, and a customized Django administration panel.
 
