@@ -39,37 +39,12 @@ class ProductView(View):
             'totalitem': totalitem
         })
 
-class ProductDetailView(View):
-    def get(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
-        totalitem = 0
-        item_already_in_cart = False
-        in_wishlist = False
-        
-        if request.user.is_authenticated:
-            totalitem = Cart.objects.filter(user=request.user).count()
-            item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
-            in_wishlist = Wishlist.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
-            
-            # Recently Viewed Logic
-            viewed_products = request.session.get('recently_viewed', [])
-            if pk in viewed_products:
-                viewed_products.remove(pk)
-            viewed_products.insert(0, pk)
-            request.session['recently_viewed'] = viewed_products[:10]
-            
-        reviews = Review.objects.filter(product=product).select_related('user')
-        avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
-        
-        return render(request, 'app/productdetail.html', {
-            'product': product,
-            'item_already_in_cart': item_already_in_cart,
-            'in_wishlist': in_wishlist,
-            'totalitem': totalitem,
-            'reviews': reviews,
-            'avg_rating': round(avg_rating, 1),
-            'total_reviews': reviews.count()
-        })
+from django.contrib.auth import logout
+
+def user_logout(request):
+    """Log out user on both GET and POST requests, then redirect to login"""
+    logout(request)
+    return redirect('login')
 
 @login_required 
 def add_to_cart(request):
@@ -507,6 +482,9 @@ class ProductDetailView(View):
                 Q(product=product.id) & Q(user=request.user)
             ).exists()
         
+        # Track recently viewed product
+        add_to_recently_viewed(request, pk)
+        
         # Get recommendations
         recommended_products = get_recommended_products(request.user, product)
         
@@ -590,8 +568,11 @@ def add_to_recently_viewed(request, product_id):
 @login_required
 def show_recently_viewed(request):
     recently_viewed_ids = request.session.get('recently_viewed', [])
-    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(recently_viewed_ids)])
-    products = Product.objects.filter(id__in=recently_viewed_ids).order_by(preserved)
+    if recently_viewed_ids:
+        preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(recently_viewed_ids)])
+        products = Product.objects.filter(id__in=recently_viewed_ids).order_by(preserved)
+    else:
+        products = Product.objects.none()
     
     totalitem = Cart.objects.filter(user=request.user).count() if request.user.is_authenticated else 0
     
@@ -613,7 +594,7 @@ def product_quick_view(request, pk):
         'selling_price': product.selling_price,
         'discounted_price': product.discounted_price,
         'brand': product.brand,
-        'image_url': product.product_image.url,
+        'image_url': product.product_image.url if product.product_image else '',
     }
     
     return JsonResponse(data)

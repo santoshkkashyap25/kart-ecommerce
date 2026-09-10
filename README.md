@@ -34,7 +34,7 @@
 - **Customer Management** - View history, lifetime value, segmentation
 ---
 
-## Quick Start (Docker - Automated)
+## Quick Start (Docker)
 
 The fastest way to get KART running is using Docker. The setup is fully automated, including migrations and data seeding.
 
@@ -78,7 +78,7 @@ python manage.py runserver
 ```
 
 ---
-## 🧪 Testing
+## Testing
 
 The project includes a robust test suite covering models, views, and forms.
 

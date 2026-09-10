@@ -118,6 +118,7 @@ class Cart(models.Model):
     
 
 STATUS_CHOICES = (
+    ('Pending', 'Pending'),
     ('Accepted', 'Accepted'),
     ('Packed', 'Packed'),
     ('On The Way', 'On The Way'),

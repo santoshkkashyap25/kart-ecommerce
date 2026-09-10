@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4e73df" />
+      <stop offset="100%" stop-color="#224abe" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="85" fill="#f8f9fc" />
+  <circle cx="100" cy="100" r="70" fill="#eaecf4" opacity="0.5" />
+  <!-- Box / Package -->
+  <g transform="translate(45, 50)">
+    <polygon points="55,10 100,35 55,60 10,35" fill="#d1d3e2" stroke="#b7b9cc" stroke-width="2"/>
+    <polygon points="10,35 55,60 55,105 10,80" fill="#858796" stroke="#6e707e" stroke-width="2"/>
+    <polygon points="100,35 55,60 55,105 100,80" fill="#5a5c69" stroke="#373840" stroke-width="2"/>
+    <ellipse cx="55" cy="5" rx="20" ry="10" fill="none" stroke="#4e73df" stroke-width="3" stroke-dasharray="4,4"/>
+  </g>
+</svg>

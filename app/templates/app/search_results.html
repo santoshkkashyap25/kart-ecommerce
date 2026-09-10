@@ -149,7 +149,7 @@
     <ul class="pagination justify-content-center">
      {% if products.has_previous %}
      <li class="page-item">
-      <a class="page-link" href="?page={{ products.previous_page_number }}&q={{ query }}&category={{ category }}&sort={{ request.GET.sort }}">Previous</a>
+      <a class="page-link" href="?page={{ products.previous_page_number }}&q={{ query }}&category={{ category }}&sort={{ request.GET.sort }}&min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}">Previous</a>
      </li>
      {% endif %}
      
@@ -157,13 +157,13 @@
       {% if products.number == num %}
       <li class="page-item active"><a class="page-link">{{ num }}</a></li>
       {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
-      <li class="page-item"><a class="page-link" href="?page={{ num }}&q={{ query }}&category={{ category }}&sort={{ request.GET.sort }}">{{ num }}</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ num }}&q={{ query }}&category={{ category }}&sort={{ request.GET.sort }}&min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}">{{ num }}</a></li>
       {% endif %}
      {% endfor %}
      
      {% if products.has_next %}
      <li class="page-item">
-      <a class="page-link" href="?page={{ products.next_page_number }}&q={{ query }}&category={{ category }}&sort={{ request.GET.sort }}">Next</a>
+      <a class="page-link" href="?page={{ products.next_page_number }}&q={{ query }}&category={{ category }}&sort={{ request.GET.sort }}&min_price={{ request.GET.min_price }}&max_price={{ request.GET.max_price }}">Next</a>
      </li>
      {% endif %}
     </ul>

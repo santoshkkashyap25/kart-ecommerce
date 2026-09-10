@@ -2,7 +2,7 @@ import os
 import shutil
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from app.models import Product, Banner
+from app.models import Product
 
 class Command(BaseCommand):
     help = 'Seeds the database with dummy products using static images'
@@ -25,6 +25,12 @@ class Command(BaseCommand):
             {'title': 'Google Pixel 7', 'selling_price': 50000, 'discounted_price': 45000, 'brand': 'Google', 'category': 'M', 'img': 'M4.jpg', 'sku': 'PIX7'},
             {'title': 'Redmi Note 12', 'selling_price': 20000, 'discounted_price': 18000, 'brand': 'Xiaomi', 'category': 'M', 'img': 'M5.jpg', 'sku': 'REDN12'},
             
+            # Laptops
+            {'title': 'MacBook Pro 16', 'selling_price': 220000, 'discounted_price': 199999, 'brand': 'Apple', 'category': 'L', 'img': 'M1.jpg', 'sku': 'MBP16'},
+            {'title': 'Dell XPS 15', 'selling_price': 160000, 'discounted_price': 145000, 'brand': 'Dell', 'category': 'L', 'img': 'M2.jpg', 'sku': 'XPS15'},
+            {'title': 'HP Spectre x360', 'selling_price': 130000, 'discounted_price': 120000, 'brand': 'HP', 'category': 'L', 'img': 'M3.jpg', 'sku': 'HPSPEC'},
+            {'title': 'Lenovo ThinkPad X1', 'selling_price': 140000, 'discounted_price': 128000, 'brand': 'Lenovo', 'category': 'L', 'img': 'M4.jpg', 'sku': 'TPX1'},
+
             # Headphones
             {'title': 'Sony WH-1000XM5', 'selling_price': 30000, 'discounted_price': 27000, 'brand': 'Sony', 'category': 'H', 'img': 'H1.jpg', 'sku': 'SONYXM5'},
             {'title': 'Bose QuietComfort 45', 'selling_price': 25000, 'discounted_price': 22000, 'brand': 'Bose', 'category': 'H', 'img': 'H2.jpg', 'sku': 'BOSE45'},

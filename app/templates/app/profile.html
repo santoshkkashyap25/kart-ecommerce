@@ -41,14 +41,7 @@
                             {% for fm in form %}
                             <div class="form-group col-lg-6">
                                 {{ fm.label_tag }}
-                                
-                                <input type="{{ fm.field.widget.input_type|default:'text' }}" 
-                                       class="form-control" 
-                                       id="{{ fm.id_for_label }}" 
-                                       name="{{ fm.name }}" 
-                                       value="{{ fm.value|default_if_none:'' }}" 
-                                       {% if fm.field.required %}required{% endif %}>
-                                
+                                {{ fm }}
                                 <small class="text-danger mt-1 d-block">{{ fm.errors|striptags }}</small>
                             </div>
                             {% endfor %}

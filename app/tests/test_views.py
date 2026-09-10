@@ -707,3 +707,68 @@ class ExportOrderHistoryTestCase(TestCase):
         content = response.content.decode('utf-8')
         self.assertIn('Order ID', content)
         self.assertIn('Test Product', content)
+
+
+class RecentlyViewedTestCase(TestCase):
+    """Test recently viewed functionality"""
+    
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username='testuser', password='testpass123')
+        self.product = Product.objects.create(
+            title='Viewed Product',
+            selling_price=1000,
+            discounted_price=800,
+            description='Test description',
+            brand='TestBrand',
+            category='M',
+            product_image='test.jpg',
+            sku='SKU_VIEWED_001'
+        )
+
+    def test_recently_viewed_empty_session(self):
+        """Test recently viewed page does not crash with empty session"""
+        self.client.login(username='testuser', password='testpass123')
+        response = self.client.get(reverse('recently_viewed'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'app/recently_viewed.html')
+        self.assertEqual(len(response.context['products']), 0)
+
+    def test_recently_viewed_with_products(self):
+        """Test recently viewed page displays viewed items"""
+        self.client.login(username='testuser', password='testpass123')
+        session = self.client.session
+        session['recently_viewed'] = [self.product.id]
+        session.save()
+        
+        response = self.client.get(reverse('recently_viewed'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['products']), 1)
+        self.assertEqual(response.context['products'][0].id, self.product.id)
+
+
+class ProductQuickViewTestCase(TestCase):
+    """Test product quick view AJAX endpoint"""
+    
+    def setUp(self):
+        self.client = Client()
+        self.product = Product.objects.create(
+            title='Quick View Product',
+            selling_price=1000,
+            discounted_price=800,
+            description='Quick description',
+            brand='TestBrand',
+            category='M',
+            product_image='test.jpg',
+            sku='SKU_QUICK_001'
+        )
+
+    def test_quick_view_returns_json(self):
+        """Test quick view returns JSON details"""
+        response = self.client.get(reverse('product_quick_view', kwargs={'pk': self.product.id}))
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEqual(data['id'], self.product.id)
+        self.assertEqual(data['title'], 'Quick View Product')
+        self.assertEqual(float(data['discounted_price']), 800.0)
+

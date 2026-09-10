@@ -62,6 +62,25 @@
     </div>
   </div>
 
+  <!-- ===== Laptops Section ===== -->
+  <div class="category-section mb-5">
+    <h2 class="mb-4 fw-bold">Laptops</h2>
+    <div class="owl-carousel owl-theme" id="slider4">
+      {% for l in laptops %}
+        <div class="item text-center p-3 border rounded shadow-sm bg-white">
+          <a href="{% url 'product-detail' l.id %}" class="text-decoration-none text-dark">
+            <img src="{{ l.product_image.url }}" alt="{{ l.title }}" class="img-fluid mb-3" style="height: 200px; object-fit: contain;">
+            <h5 class="fw-semibold">{{ l.title }}</h5>
+            <p class="mb-0 text-success fw-bold">₹{{ l.discounted_price }}</p>
+            <small class="text-muted text-decoration-line-through">₹{{ l.selling_price }}</small>
+          </a>
+        </div>
+      {% empty %}
+        <p>No laptops available right now.</p>
+      {% endfor %}
+    </div>
+  </div>
+
   <!-- ===== Recently Viewed Section ===== -->
   {% if recently_viewed %}
   <div class="category-section mb-5">
@@ -89,17 +108,16 @@
 {% block scripts %}
 <script>
   $(document).ready(function(){
-    $('#slider1, #slider2, #slider3, #recentlyViewedSlider').owlCarousel({
-      loop:true,
+    $('#slider1, #slider2, #slider3, #slider4, #recentlyViewedSlider').owlCarousel({
+      loop:false,
       margin:15,
       nav:true,
       dots:false,
-      autoplay:true,
-      autoplayTimeout:1000,
+      autoplay:false,
       responsive:{
         0:{ items:1 },
         600:{ items:3 },
-        1000:{ items:5 }
+        1000:{ items:4 }
       }
     });
   });

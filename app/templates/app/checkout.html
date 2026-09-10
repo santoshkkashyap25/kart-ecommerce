@@ -41,7 +41,7 @@
                     <h4 class="mb-0 fw-bold">📍 Select Shipping Address</h4>
                 </div>
                 <div class="card-body p-4">
-                    <form action="/paymentdone" id="addressForm">
+                    <form action="{% url 'paymentdone' %}" id="addressForm">
                         {% for ad in add %}
                         <div class="card mb-3 address-card shadow-sm">
                             <div class="card-body p-3">
@@ -54,10 +54,19 @@
                                 </div>
                             </div>
                         </div>
+                        {% empty %}
+                        <div class="alert alert-warning mb-3">
+                            <i class="fas fa-exclamation-circle me-1"></i> No saved shipping addresses found.
+                            <div class="mt-2">
+                                <a href="{% url 'profile' %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-plus-circle me-1"></i> Add Shipping Address
+                                </a>
+                            </div>
+                        </div>
                         {% endfor %}
                         
                         <div class="text-end border-top pt-3 mt-4">
-                            <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold shadow" onclick="return checkAddress()" {% if cart_items|length == 0 %}disabled{% endif %}>
+                            <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold shadow" onclick="return checkAddress()" {% if cart_items|length == 0 or add|length == 0 %}disabled{% endif %}>
                                 Continue <i class="fas fa-chevron-circle-right ms-2"></i>
                             </button>
                         </div>
