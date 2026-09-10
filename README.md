@@ -40,8 +40,8 @@ The fastest way to get KART running is using Docker. The setup is fully automate
 
 1.  **Clone and Configure**
     ```bash
-    git clone https://github.com/santoshkkashyap25/kart.git
-    cd kart
+    git clone https://github.com/santoshkkashyap25/kart-ecommerce.git
+    cd kart-ecommerce
     cp .env.example .env
     ```
 
