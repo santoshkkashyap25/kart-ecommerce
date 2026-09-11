@@ -22,7 +22,6 @@ A full-stack monolithic e-commerce application built with **Python** and **Djang
   - [Docker Installation](#docker-installation)
 - [Environment Configuration](#environment-configuration)
 - [Automated Tests](#automated-tests)
-- [License](#license)
 
 ---
 
@@ -240,9 +239,3 @@ python manage.py test app.tests.test_views
 python manage.py test app.tests.test_forms
 python manage.py test app.tests.test_urls
 ```
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
