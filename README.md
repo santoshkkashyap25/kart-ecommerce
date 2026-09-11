@@ -6,8 +6,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=flat-square&logo=render&logoColor=white)](https://kart-pcn0.onrender.com/)
 
-> 🚀 **Live Demo:** [https://kart-pcn0.onrender.com/](https://kart-pcn0.onrender.com/)  
-> 🛒 **Wishlist:** [https://kart-pcn0.onrender.com/wishlist/](https://kart-pcn0.onrender.com/wishlist/)
+> 🚀 **Live Demo:** [https://kart-pcn0.onrender.com/](https://kart-pcn0.onrender.com/)
 
 A full-stack monolithic e-commerce application built with **Python** and **Django** using the Model-View-Template (MVT) pattern. It covers the complete retail journey: product catalog, search & filtering, real-time AJAX cart, wishlist, multi-address checkout, order lifecycle tracking, customer reviews, and a customized Django administration panel.
 
