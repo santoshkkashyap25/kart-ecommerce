@@ -1,3 +1,6 @@
 django
 Pillow
 django-environ
+whitenoise
+gunicorn
+
